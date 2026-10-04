@@ -1,4 +1,9 @@
 packages:
-  - "apps/*"
-  - "packages/*"
-  - "packages/core/e2e/fixture"
+  - apps/*
+  - packages/*
+  - packages/core/e2e/fixture
+
+onlyBuiltDependencies:
+  - core-js
+  - esbuild
+  - msw
