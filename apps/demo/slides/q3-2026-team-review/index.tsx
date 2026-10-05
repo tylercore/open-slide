@@ -228,7 +228,7 @@ const Cover: Page = () => (
       <Body style={{ marginTop: 44, color: c.muted, fontSize: 38 }}>
         既有產品持續推進
         <br />
-        Travis AI 開發前準備
+        Travis AI 開發前準備(專利、CITI)
       </Body>
     </div>
     <div
@@ -287,7 +287,7 @@ const Portfolio: Page = () => (
       <Label color={c.muted}>產品</Label>
       <Label color={c.muted}>目前方向</Label>
     </div>
-    <Row code="01" title="AI 晨報">
+    <Row code="01" title="AI 晨報智能體">
       Rework 規劃中，新增事件研究體驗
     </Row>
     <Row code="02" title="金融 DB">
@@ -323,9 +323,9 @@ const MorningFeature = ({
 const MorningFoundation: Page = () => (
   <Frame
     section="02 / AI MORNING REPORT"
-    title="AI 晨報的既有基礎"
+    title="AI 晨報智能體網頁版"
     lead="閱讀、收聽與問答能力持續保留，作為下一階段的產品基礎。"
-    note="AI 晨報操作示範 / 75 秒 / 含繁體中文字幕與音訊，可手動播放。"
+    note={'\n'}
   >
     <div
       style={{ display: 'grid', gridTemplateColumns: '1040px 1fr', gap: 100, alignItems: 'start' }}
@@ -394,7 +394,7 @@ const EventExperience: Page = () => (
     section="02 / REWORK CONCEPT"
     title="在日曆看事件，在走勢找脈絡"
     lead="法說會、FED、IPO 等資訊，放回市場發生的時間點。"
-    note="規劃示意：事件日期、公司及價格路徑皆為虛構；圖表呈現時間關係，不代表因果驗證。"
+    note={'\n'}
   >
     <div style={{ display: 'grid', gridTemplateColumns: '470px 1fr', gap: 72 }}>
       <div>
@@ -471,7 +471,7 @@ const MorningImplementation: Page = () => (
     section="02 / NEXT STEP"
     title="先建立資料與影片的收集機制"
     lead="Rework 目前已有初步發想，接下來進入實作。"
-    note="原有閱讀、收聽與問答功能持續保留。"
+    note={'\n'}
   >
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 64, marginTop: 66 }}>
       <Point number="01 / COLLECT" title="資料與影片收集">
@@ -598,7 +598,7 @@ const ResearchDatabaseExpansion: Page = () => (
     section="03 / RESEARCH DB EXPANSION"
     title="研報 DB：先上雲，再擴充研究內容"
     lead="既有研報能力支援搜尋、問答與原文追溯，目前正在執行上雲任務。"
-    note="上雲為進行中任務；國內外研報擴充為後續目標，來源與涵蓋範圍將逐步推進。"
+    note={'\n'}
   >
     <div style={{ ...split, marginTop: 20 }}>
       <Point number="01 / 目前進行中" title="研報 DB 上雲">
@@ -637,7 +637,7 @@ const TradingProgress: Page = () => (
     section="04 / AI STOCK TRADING"
     title="交易機器人：推進富邦 API 串接"
     lead="產品方向延續，以既有工作台為基礎持續推進。"
-    note="左側為既有產品畫面；富邦 API 串接處於開始推進階段。"
+    note={'\n'}
   >
     <div
       style={{
@@ -1126,7 +1126,7 @@ const PatentAndCiti: Page = () => (
     section="05 / PATENT & CITI"
     title="以兩項特色，展開申請與企劃"
     lead="專利申請與 CITI 企劃書，共用清楚的產品核心。"
-    note="CITI：台北市產業發展獎勵補助計畫。此頁呈現準備方向，非送件或核准成果。"
+    note={'\n'}
   >
     <div style={{ ...split, marginTop: 12 }}>
       <Point accent={c.copper} number="核心特色 01" title="差距呈現">
@@ -1184,7 +1184,7 @@ const DevelopmentGates: Page = () => (
     section="05 / DEVELOPMENT GATES"
     title="三項條件完成後，進入產品開發"
     lead="以明確里程碑推進；CITI 的評審結果是開發前置條件之一。"
-    note="依條件推進，暫不綁定開發啟動日期。"
+    note={'\n'}
   >
     <div style={{ position: 'relative', marginTop: 56, height: 430 }}>
       <div style={{ width: 1070 }}>
