@@ -8,12 +8,12 @@ You are working on the **open-slide framework** — the runtime, CLI, and toolin
 
 pnpm + Turbo monorepo.
 
-| Path            | Package            | Role                                                                                                                    |
-| --------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| `packages/core` | `@open-slide/core` | Runtime (viewer, present mode, inspector), Vite plugin, `open-slide` dev/build CLI.                                     |
-| `packages/cli`  | `@open-slide/cli`  | `npx @open-slide/cli init` scaffolder + project template.                                                               |
-| `apps/demo`     | private            | Local consumer of `@open-slide/core` via `workspace:*`. Dogfood target — run `pnpm dev` here to exercise the framework. |
-| `apps/web`      | private            | Marketing site (Next.js).                                                                                               |
+| Path | Package | Role |
+| --- | --- | --- |
+| `packages/core` | `@open-slide/core` | Runtime (viewer, present mode, inspector), Vite plugin, `open-slide` dev/build CLI. |
+| `packages/cli` | `@open-slide/cli` | `npx @open-slide/cli init` scaffolder + project template. |
+| `apps/demo` | private | Local consumer of `@open-slide/core` via `workspace:*`. Dogfood target — run `pnpm dev` here to exercise the framework. |
+| `apps/web` | private | Marketing site (Next.js). |
 
 Shared config: `biome.json`, `turbo.json`, `pnpm-workspace.yaml`, `tsconfig` per package.
 
