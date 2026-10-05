@@ -30,7 +30,10 @@ The demo workspace includes these product and planning decks:
 | 應用開發部門｜產品版圖與 30／90／365 天計畫 | [`application-development-roadmap`](./slides/application-development-roadmap/index.tsx) |
 | FinDB | [`findb-overview`](./slides/findb-overview/index.tsx) |
 | Travis AI｜16 交易人格設計進度 | [`personality-system-design`](./slides/personality-system-design/index.tsx) |
+| 2026 第三季｜團隊成果與產品規劃 | [`q3-2026-team-review`](./slides/q3-2026-team-review/index.tsx) |
 | 廷豐 AI 晨報 | [`tingfong-ai-morning-report`](./slides/tingfong-ai-morning-report/index.tsx) |
+
+Q3 簡報的 Travis AI 段落包含 16 型交易人格輪盤，以「追勢衝浪手」作為實際交易人格、「突破規則手」作為期望交易人格，對照進場依據、計畫變動與交易回顧，並說明交易前、決策當下及交易後的引導方式。案例與行為描述為概念示意，講者說明保存在簡報的 `notes` export。
 
 ## Authoring a slide
 

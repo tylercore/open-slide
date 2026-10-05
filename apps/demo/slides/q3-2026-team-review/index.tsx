@@ -2,6 +2,7 @@ import type { DesignSystem, Page, SlideMeta, SlideTransition } from '@open-slide
 import { useSlidePageNumber } from '@open-slide/core';
 import type { CSSProperties, ReactNode } from 'react';
 import morningReport from './assets/morning-report.png';
+import tradingPersonaWheel from './assets/trading-persona-wheel.png';
 import tradingWorkbench from './assets/trading-workbench.png';
 
 export const design: DesignSystem = {
@@ -674,32 +675,105 @@ const TravisIntro: Page = () => (
   </Canvas>
 );
 
+const PersonalityWheel: Page = () => (
+  <Canvas>
+    <img
+      src={tradingPersonaWheel}
+      alt="16 型交易人格輪盤：左上短線靈活決策、右上短線系統化、左下長線系統化、右下長線靈活決策，各含四種人格"
+      style={{
+        position: 'absolute',
+        left: 112,
+        top: 110,
+        width: 850,
+        height: 850,
+        objectFit: 'contain',
+      }}
+    />
+    <div style={{ position: 'absolute', left: 1040, top: 100, width: 768 }}>
+      <Label color={c.copper}>05 / TRADING PERSONA WHEEL</Label>
+      <h2 style={{ fontSize: 72, fontWeight: 750, lineHeight: 1.2, margin: '26px 0 24px' }}>
+        16 型交易人格
+      </h2>
+      <Body style={{ color: c.muted, fontSize: 32 }}>
+        先看交易週期與決策方式，
+        <br />
+        再理解四個象限中的人格。
+      </Body>
+      <div style={{ marginTop: 40, borderTop: `1px solid ${c.line}` }}>
+        <div style={{ padding: '14px 0', borderBottom: `1px solid ${c.line}` }}>
+          <div style={{ fontSize: 33, fontWeight: 650, lineHeight: 1.2, color: '#997022' }}>
+            左上 / 短線・靈活決策
+          </div>
+          <Body style={{ fontSize: 30, color: c.muted, marginTop: 10 }}>
+            依當下行情調整，例：追勢衝浪手
+          </Body>
+        </div>
+        <div style={{ padding: '14px 0', borderBottom: `1px solid ${c.line}` }}>
+          <div style={{ fontSize: 33, fontWeight: 650, lineHeight: 1.2, color: '#705091' }}>
+            右上 / 短線・系統化
+          </div>
+          <Body style={{ fontSize: 30, color: c.muted, marginTop: 10 }}>
+            依明確訊號決策，例：突破規則手
+          </Body>
+        </div>
+        <div style={{ padding: '14px 0', borderBottom: `1px solid ${c.line}` }}>
+          <div style={{ fontSize: 33, fontWeight: 650, lineHeight: 1.2, color: '#497448' }}>
+            左下 / 長線・系統化
+          </div>
+          <Body style={{ fontSize: 30, color: c.muted, marginTop: 10 }}>
+            依配置規則管理，例：系統價值配置師
+          </Body>
+        </div>
+        <div style={{ padding: '14px 0' }}>
+          <div style={{ fontSize: 33, fontWeight: 650, lineHeight: 1.2, color: '#297795' }}>
+            右下 / 長線・靈活決策
+          </div>
+          <Body style={{ fontSize: 30, color: c.muted, marginTop: 10 }}>
+            依研究判斷機會，例：價值埋伏者
+          </Body>
+        </div>
+      </div>
+      <div style={{ marginTop: 12, color: c.muted, fontSize: 24, lineHeight: 1.4 }}>
+        分類依提供的輪盤；特質說明為概念示意。
+      </div>
+    </div>
+  </Canvas>
+);
+
 const TraderNeed: Page = () => (
   <Frame
     travis
     section="05 / THE TRADER"
-    title="期待的自己，與實際行為之間"
-    lead="示意交易者小林，希望自己的交易更有計畫。"
-    note="小林為虛構案例；特質描述用於說明產品概念，並非已定案的人格面向。"
+    title="小林的實際與期望交易人格"
+    lead="同樣做短線交易，小林希望保留對趨勢的敏感度，同時建立明確規則。"
+    note="小林為虛構案例；人格名稱與象限取自輪盤，行為描述與目標選擇為示意，無優劣排序。"
   >
     <div style={{ ...split, marginTop: 46 }}>
-      <div style={{ borderTop: `3px solid ${c.copper}`, paddingTop: 32 }}>
-        <Label color={c.copper}>期待的人格</Label>
-        <div style={{ fontSize: 57, fontWeight: 650, lineHeight: 1.45, marginTop: 40 }}>
-          「我希望先有計畫，
-          <br />
-          再做交易決定。」
-        </div>
-        <Body style={{ color: c.muted, marginTop: 32 }}>明確條件、保留思考空間。</Body>
-      </div>
       <div style={{ borderTop: '3px solid var(--osd-accent)', paddingTop: 32 }}>
-        <Label>行為呈現的樣子</Label>
+        <Label>實際交易人格 / 行為觀測示意</Label>
+        <h3 style={{ fontSize: 62, fontWeight: 650, margin: '30px 0 16px' }}>追勢衝浪手</h3>
+        <Body style={{ fontSize: 30, color: '#997022' }}>輪盤左上 / 短線・靈活決策</Body>
         <div style={{ fontSize: 57, fontWeight: 650, lineHeight: 1.45, marginTop: 40 }}>
-          價格一波動，
+          「行情動了，
           <br />
-          就臨時改變原定計畫。
+          我就想跟上。」
         </div>
-        <Body style={{ color: c.muted, marginTop: 32 }}>先看見差距，才有調整的起點。</Body>
+        <Body style={{ color: c.muted, marginTop: 32, fontSize: 32 }}>
+          追著走勢進場，容易臨時改變計畫。
+        </Body>
+      </div>
+      <div style={{ borderTop: `3px solid ${c.copper}`, paddingTop: 32 }}>
+        <Label color={c.copper}>期望交易人格 / 小林自行選定</Label>
+        <h3 style={{ fontSize: 62, fontWeight: 650, margin: '30px 0 16px' }}>突破規則手</h3>
+        <Body style={{ fontSize: 30, color: '#705091' }}>輪盤右上 / 短線・系統化</Body>
+        <div style={{ fontSize: 57, fontWeight: 650, lineHeight: 1.45, marginTop: 40 }}>
+          「條件符合，
+          <br />
+          我才做交易決定。」
+        </div>
+        <Body style={{ color: c.muted, marginTop: 32, fontSize: 32 }}>
+          事先訂好條件，按規則執行與回顧。
+        </Body>
       </div>
     </div>
   </Frame>
@@ -737,7 +811,7 @@ const ExpectedPersonality: Page = () => (
       }}
     >
       <Label color={c.copper}>小林的期待人格 / 示意</Label>
-      <div style={{ fontSize: 45, fontWeight: 650 }}>先有計畫，再做交易決定</div>
+      <div style={{ fontSize: 45, fontWeight: 650 }}>突破規則手：先訂條件，再做決定</div>
     </div>
   </Frame>
 );
@@ -746,71 +820,47 @@ const GapComparison: Page = () => (
   <Frame
     travis
     section="05 / FEATURE 01"
-    title="把人格差距，放在同一把尺上"
-    lead="比較行為指向的人格與期待人格，讓偏離的位置更容易理解。"
-    note="概念示意：僅以單一特質說明，標記位置不代表實際分數或已驗證的人格因子。"
+    title="兩種人格的行為差異"
+    lead="以小林的短線交易為例，把人格差距拆成可觀察的行為。"
+    note="以下為虛構案例的行為對照，非人格診斷或實際評分；期望人格由使用者自行確認。"
   >
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 18,
-      }}
-    >
-      <Label color={c.copper}>小林 / 面對交易機會時</Label>
-      <div style={{ display: 'flex', gap: 36, fontSize: 25 }}>
-        <span style={{ color: 'var(--osd-accent)' }}>● 行為觀測</span>
-        <span style={{ color: c.copper }}>◇ 期待人格</span>
-      </div>
-    </div>
-    <svg
-      width="1696"
-      height="295"
-      viewBox="0 0 1696 295"
-      role="img"
-      aria-label="小林的行為觀測偏向臨場反應，期待人格偏向依計畫決策，兩者之間以線段標示差距"
-    >
-      <path d="M 100 160 H 1596" stroke={c.line} strokeWidth="4" />
-      <path
-        d="M 100 150 V 170 M 474 150 V 170 M 848 150 V 170 M 1222 150 V 170 M 1596 150 V 170"
-        stroke={c.muted}
-        strokeWidth="2"
-      />
-      <path d="M 548 104 V 88 H 1297 V 104" stroke={c.copper} fill="none" strokeWidth="2" />
-      <text x="922" y="64" textAnchor="middle" fill={c.copper} fontSize="29">
-        與期待人格的差距
-      </text>
-      <circle cx="548" cy="160" r="15" fill="var(--osd-accent)" />
-      <path
-        d="M 1297 142 L 1315 160 L 1297 178 L 1279 160 Z"
-        fill="var(--osd-bg)"
-        stroke={c.copper}
-        strokeWidth="4"
-      />
-      <text x="548" y="222" textAnchor="middle" fill="var(--osd-accent)" fontSize="29">
-        行為觀測
-      </text>
-      <text x="1297" y="222" textAnchor="middle" fill={c.copper} fontSize="29">
-        期待人格
-      </text>
-      <text x="100" y="283" fill={c.muted} fontSize="26">
-        較偏向臨場反應
-      </text>
-      <text x="1596" y="283" textAnchor="end" fill={c.muted} fontSize="26">
-        較偏向依計畫決策
-      </text>
-    </svg>
-    <div style={{ ...split, marginTop: 32, borderTop: `1px solid ${c.line}`, paddingTop: 28 }}>
-      <div>
-        <Label>行為線索 / 示例</Label>
-        <Body style={{ marginTop: 16, fontSize: 32 }}>波動出現時，臨時改變原定計畫。</Body>
-      </div>
-      <div>
-        <Label color={c.copper}>對照的用途</Label>
-        <Body style={{ marginTop: 16, fontSize: 32 }}>找出值得留意、可以調整的行為。</Body>
-      </div>
-    </div>
+    <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 22, textAlign: 'left' }}>
+      <thead>
+        <tr>
+          <th style={{ width: 260, padding: '0 0 30px', fontWeight: 500 }}>
+            <Label color={c.muted}>對照面向</Label>
+          </th>
+          <th style={{ width: 720, padding: '0 36px 30px 0', fontWeight: 500 }}>
+            <Label>實際 / 追勢衝浪手</Label>
+          </th>
+          <th style={{ padding: '0 0 30px', fontWeight: 500 }}>
+            <Label color={c.copper}>期望 / 突破規則手</Label>
+          </th>
+        </tr>
+      </thead>
+      <tbody style={{ fontSize: 34, lineHeight: 1.55 }}>
+        <tr style={{ borderTop: `1px solid ${c.line}` }}>
+          <th style={{ padding: '30px 0', fontWeight: 650 }}>進場依據</th>
+          <td style={{ padding: '30px 36px 30px 0', color: c.muted }}>看到走勢加速，就想跟進</td>
+          <td style={{ padding: '30px 0' }}>等預設突破條件符合才進場</td>
+        </tr>
+        <tr style={{ borderTop: `1px solid ${c.line}` }}>
+          <th style={{ padding: '30px 0', fontWeight: 650 }}>計畫變動</th>
+          <td style={{ padding: '30px 36px 30px 0', color: c.muted }}>隨短期波動，臨時改變計畫</td>
+          <td style={{ padding: '30px 0' }}>依預設退出條件或調整規則決定</td>
+        </tr>
+        <tr style={{ borderTop: `1px solid ${c.line}`, borderBottom: `1px solid ${c.line}` }}>
+          <th style={{ padding: '30px 0', fontWeight: 650 }}>交易回顧</th>
+          <td style={{ padding: '30px 36px 30px 0', color: c.muted }}>
+            先看結果，較少記錄決策理由
+          </td>
+          <td style={{ padding: '30px 0' }}>回看是否遵守條件與變更理由</td>
+        </tr>
+      </tbody>
+    </table>
+    <Body style={{ color: c.copper, fontSize: 36, marginTop: 44 }}>
+      引導重點：保留對趨勢的敏感度，增加條件確認與決策紀錄。
+    </Body>
   </Frame>
 );
 
@@ -818,57 +868,42 @@ const BehaviorGuidance: Page = () => (
   <Frame
     travis
     section="05 / FEATURE 02"
-    title="在決策當下，提醒自己的目標"
-    lead="延續小林的情境：看見價格波動，又想臨時改變計畫。"
-    note="提示內容為產品概念示意；觸發條件、介入方式與效果驗證仍待設計。"
+    title="Travis 如何引導小林靠近期望人格"
+    lead="把「突破規則手」的期望，落在每次交易前、決策當下與交易後。"
+    note="流程與提示為產品概念示意；介入規則與效果仍待驗證，最終決定由使用者做出。"
   >
-    <div style={{ display: 'grid', gridTemplateColumns: '530px 1fr', gap: 84, marginTop: 26 }}>
-      <div>
-        <Label color={c.copper}>小林設定的方向</Label>
-        <div style={{ fontSize: 48, lineHeight: 1.4, fontWeight: 650, marginTop: 28 }}>
-          先有計畫，
-          <br />
-          再做交易決定。
-        </div>
-        <div style={{ borderTop: `1px solid ${c.line}`, marginTop: 48, paddingTop: 28 }}>
-          <Label color={c.muted}>此刻的行為</Label>
-          <Body style={{ marginTop: 18, color: c.muted, fontSize: 31 }}>
-            因短期波動，
-            <br />
-            想調整原本的決策。
-          </Body>
-        </div>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 56, marginTop: 22 }}>
+      <Point accent={c.copper} number="01 / 交易前" title="把期望寫成條件">
+        協助小林記下進場條件
+        <br />
+        與退出規則，建立對照依據。
+      </Point>
+      <Point accent={c.copper} number="02 / 決策當下" title="提醒確認原定計畫">
+        想追價或臨時改計畫時，
+        <br />
+        提醒先核對條件與理由。
+      </Point>
+      <Point accent={c.copper} number="03 / 交易後" title="回顧行為是否靠近">
+        對照原定條件與實際操作，
+        <br />
+        回看偏離原因與規則遵守情況。
+      </Point>
+    </div>
+    <div
+      style={{
+        borderLeft: `5px solid ${c.copper}`,
+        background: c.copperSoft,
+        marginTop: 46,
+        padding: '26px 36px',
+      }}
+    >
+      <Label color={c.copper}>決策當下 / 提示示意</Label>
+      <div style={{ fontSize: 37, fontWeight: 600, lineHeight: 1.45, marginTop: 16 }}>
+        「這次進場符合你設定的突破條件嗎？若要調整計畫，先記下理由。」
       </div>
-      <div
-        style={{
-          background: c.copperSoft,
-          borderLeft: `5px solid ${c.copper}`,
-          padding: '36px 46px',
-        }}
-      >
-        <Label color={c.copper}>TRAVIS / 提示示意</Label>
-        <div style={{ fontSize: 44, fontWeight: 600, lineHeight: 1.45, marginTop: 28 }}>
-          這次調整，符合你原先
-          <br />
-          設定的交易條件嗎？
-        </div>
-        <Body style={{ fontSize: 32, marginTop: 32, color: c.muted }}>
-          先回看原定計畫，再確認是否需要調整。
-          <br />
-          若決定調整，可以記下這次的理由。
-        </Body>
-        <div
-          style={{
-            borderTop: '1px solid #CFB7A6',
-            marginTop: 36,
-            paddingTop: 24,
-            fontSize: 29,
-            color: c.copper,
-          }}
-        >
-          協助思考與提示，由交易者做出決定。
-        </div>
-      </div>
+      <Body style={{ fontSize: 30, color: c.muted, marginTop: 16 }}>
+        回顧時關注條件是否符合、是否記錄理由，讓每次調整都有跡可循。
+      </Body>
     </div>
   </Frame>
 );
@@ -1173,10 +1208,11 @@ export const notes: (string | undefined)[] = [
   '建議 1:00。下一波要導入 FactSet、擴充 Finlab，也納入晨報規劃中的活動影片。活動資料的收集與累積，可以支援晨報的事件入口。這是目前的擴充方向，不表示這些新來源已完成導入。',
   '建議 1:00。交易機器人的方向維持一致，本次主要是進度推進，開始串接富邦 API。左邊是既有工作台，用來交代產品基礎。本次不額外展開介面或串接技術細節。',
   '建議 0:45。接下來是本次的重點 Travis AI。它是人格驅動的交易助理，兩項主要特色分別是呈現人格差距，以及協助交易者調整行為。專案目前仍在人格設計階段。',
-  '建議 1:30。用虛構的小林說明需求。小林希望先有計畫再交易，但實際上碰到價格波動，就可能臨時改變計畫。產品希望協助他看見行為與期待人格之間的差異。這裡的特質只是便於理解的例子，不是已定案的人格名稱或分類。',
-  '建議 1:30。期待人格有兩種選定方式。一種是看過特質說明後自行選擇，另一種是透過簡短人格測驗協助選定。延續小林的例子，他希望更有計畫地做交易決定。期待人格是他想靠近的目標，與他目前如何評價自己需要分開理解。',
-  '建議 2:00。第一個特色是差距呈現。用同一把尺對照行為觀測與期待人格，就能更清楚地看到偏離的位置。這裡只用一個特質說明，沒有使用真實分數，也不是已驗證的人格因子。目的在於讓交易者知道哪些行為值得進一步觀察和調整。',
-  '建議 2:00。第二個特色是行為重新導向。當小林又因為短期波動想改變計畫，Travis 可以提醒他回看自己設定的條件。這段提示是概念示意，觸發方式仍需要設計。產品希望協助他思考並靠近自己的目標，最後仍由交易者決定。此處不宣稱已驗證的行為改善成效。',
+  '建議 1:30。輪盤圖由使用者提供，資產為 assets/trading-persona-wheel.png。先看兩組分類：短線與長線，以及靈活決策與系統化。四個象限各有四種人格。輪盤名稱與分組依提供圖片，旁邊的特質說明是概念解讀。接下來挑左上的追勢衝浪手與右上的突破規則手，兩者都做短線，差別集中在決策方式。輪盤是理解風格的入口，不代表人格高低或驗證完成的分類。',
+  '建議 1:30。小林是虛構案例。實際交易人格由行為觀測推估，這裡示意為追勢衝浪手，看見走勢加速就想跟進。期望交易人格由小林自行選定，這裡是突破規則手，他希望保留對趨勢的敏感度，同時先確認條件再決定。名稱與象限沿用輪盤，個別行為描述是案例設定，並非所有該類型的人都如此。期望方向由小林決定，不表示系統化人格優於靈活人格。',
+  '建議 1:30。期待人格有兩種選定方式。一種是看過特質說明後自行選擇，另一種是透過簡短人格測驗協助選定。延續小林的例子，他選擇突破規則手，希望先訂條件再做交易決定。測驗只協助探索，最後由他確認期望目標。期待人格是他想靠近的目標，與他目前如何評價自己需要分開理解。',
+  '建議 2:00。第一個特色是差距呈現。從進場依據、計畫變動與交易回顧對照兩種人格。小林現在容易看到行情就想進場，遇到波動就改計畫，回顧時先看結果。他期望先確認突破條件，依退出或調整規則決定，事後檢查條件遵守情況與理由。這些是虛構案例的可觀察行為，沒有實際評分或人格診斷。引導重點是保留對趨勢的敏感度，逐步增加條件確認與決策紀錄。',
+  '建議 2:00。第二個特色是行為重新導向。交易前，把小林的期望人格轉成他自己確認的進場條件與退出規則。決策當下，如果他想追價或臨時改計畫，Travis 提醒核對條件，若要變更則記下理由。交易後，對照原定條件與實際操作，回看偏離原因，觀察規則遵守情況與決策理由紀錄，作為下次調整的依據。這是產品概念，觸發方式與改善成效尚待驗證；不提供具體交易參數，也不把盈虧當成人格改善的證明。最終仍由小林決定。',
   '建議 1:45。現有人格設計已確認幾項資料原則，包括分開保存自評與行為觀測，分離人格傾向與判斷信心，以及在資料不足時保留未知。四大面向、因子、題目與更新規則仍在收斂。這些既有自評資料與本次說明的期待人格目標需分開，後續再銜接到差距呈現與引導方式。',
   '建議 1:45。吳信龍教授是代表系所，從學術單位的角度與我們討論合作。教授期待取得一筆可用於機器學習或深度學習的資料，但對方要求的資料目前對團隊而言較難取得。因此合作仍在洽談，我們持續討論研究需求與可提供資料之間的可行方案，分工也尚未定案。',
   '建議 1:30。專利申請與 CITI 企劃書會以這兩項特色為主軸。差距呈現說明如何比對行為人格與期待人格，行為重新導向則說明如何協助交易者靠近目標。這裡呈現準備方向，不表示已送件或取得核准。CITI 指台北市產業發展獎勵補助計畫。',
@@ -1200,6 +1236,7 @@ export default [
   DatabaseExpansion,
   TradingProgress,
   TravisIntro,
+  PersonalityWheel,
   TraderNeed,
   ExpectedPersonality,
   GapComparison,
