@@ -672,6 +672,97 @@ const TradingProgress: Page = () => (
   </Frame>
 );
 
+const TradingGoal = ({
+  title,
+  children,
+  height = 138,
+}: {
+  title: string;
+  children: ReactNode;
+  height?: number;
+}) => (
+  <div
+    style={{
+      borderTop: `1px solid ${c.line}`,
+      paddingTop: 12,
+      minHeight: height,
+      boxSizing: 'border-box',
+    }}
+  >
+    <h3 style={{ fontSize: 32, fontWeight: 650, lineHeight: 1.2, margin: '0 0 8px' }}>{title}</h3>
+    <Body style={{ fontSize: 28, lineHeight: 1.35, color: c.muted }}>{children}</Body>
+  </div>
+);
+
+const TradingNextGoals: Page = () => (
+  <Canvas>
+    <div style={{ padding: '86px 112px 0' }}>
+      <Label>04 / NEXT GOALS</Label>
+      <h2
+        style={{
+          fontSize: 76,
+          fontWeight: 750,
+          letterSpacing: '-0.035em',
+          lineHeight: 1.16,
+          margin: '22px 0 20px',
+        }}
+      >
+        交易機器人：後續七項目標
+      </h2>
+      <Body style={{ color: c.muted, fontSize: 32 }}>
+        完善每位使用者的富邦行情與帳號連線，定義本人帳務查詢規格。
+      </Body>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, marginTop: 34 }}>
+        <div>
+          <div style={{ marginBottom: 20 }}>
+            <Label>行情與帳號整合</Label>
+          </div>
+          <TradingGoal title="每人獨立行情與委託評估" height={183}>
+            使用本人富邦連線取得行情、評估本人委託；
+            <br />
+            管理登入、失效重連與停用／解綁時的清理。
+          </TradingGoal>
+          <TradingGoal title="安全綁定與管理券商帳號" height={183}>
+            加密保存憑證，支援管理員綁定／解綁、本人查詢；
+            <br />
+            建立每人連線池、容量限制、錯誤處理與安全防護。
+          </TradingGoal>
+          <TradingGoal title="完整接入富邦行情" height={183}>
+            支援登入、訂閱、重連、REST 現價與報價快取；
+            <br />
+            統一報價時間及新鮮度判定，銜接既有行情介面。
+          </TradingGoal>
+        </div>
+        <div>
+          <div style={{ marginBottom: 20 }}>
+            <Label>本人帳務查詢 / API 規格</Label>
+          </div>
+          <TradingGoal title="交割款：提示即將交割所需款項">
+            保留金額正負號及 0、null 差異；
+            <br />
+            直接呈現券商結果，不自行推算或加總。
+          </TradingGoal>
+          <TradingGoal title="持倉：查詢部位與可賣數量">
+            涵蓋不同交易類型、負數數量與空列處理；
+            <br />
+            損益與成本計算不納入此次範圍。
+          </TradingGoal>
+          <TradingGoal title="今日委託：清楚呈現券商狀態">
+            定義狀態碼轉換與未知狀態處理；區分券商委託
+            <br />
+            與系統 intent、使用者稽核對照資料。
+          </TradingGoal>
+          <TradingGoal title="帳戶餘額：沿用共用登入連線">
+            定義回傳欄位、金額型別轉換與錯誤處理；
+            <br />
+            由共用行情服務管理登入，避免另開連線。
+          </TradingGoal>
+        </div>
+      </div>
+    </div>
+  </Canvas>
+);
+
 const TravisIntro: Page = () => (
   <Canvas dark>
     <div style={{ padding: '96px 112px 0' }}>
@@ -782,7 +873,7 @@ const TraderNeed: Page = () => (
     section="05 / THE TRADER"
     title="小美的實際與期望交易人格"
     lead="同樣做短線交易，小美希望保留對趨勢的敏感度，同時建立明確規則。"
-    note="小美為虛構案例；人格名稱與象限取自輪盤，行為描述與目標選擇為示意，無優劣排序。"
+    note={'\n'}
   >
     <div style={{ ...split, marginTop: 46 }}>
       <div style={{ borderTop: '3px solid var(--osd-accent)', paddingTop: 32 }}>
@@ -791,11 +882,11 @@ const TraderNeed: Page = () => (
         <Body style={{ fontSize: 30, color: '#997022' }}>輪盤左上 / 短線・靈活決策</Body>
         <div style={{ fontSize: 57, fontWeight: 650, lineHeight: 1.45, marginTop: 40 }}>
           「行情動了，
-          <br />
-          我就想跟上。」
+          {''}
+          快速跟上。」
         </div>
         <Body style={{ color: c.muted, marginTop: 32, fontSize: 32 }}>
-          追著走勢進場，容易臨時改變計畫。
+          追著走勢進場，動態改變計畫。
         </Body>
       </div>
       <div style={{ borderTop: `3px solid ${c.copper}`, paddingTop: 32 }}>
@@ -804,8 +895,8 @@ const TraderNeed: Page = () => (
         <Body style={{ fontSize: 30, color: '#705091' }}>輪盤右上 / 短線・系統化</Body>
         <div style={{ fontSize: 57, fontWeight: 650, lineHeight: 1.45, marginTop: 40 }}>
           「條件符合，
-          <br />
-          我才做交易決定。」
+          {''}
+          才做交易決定。」
         </div>
         <Body style={{ color: c.muted, marginTop: 32, fontSize: 32 }}>
           事先訂好條件，按規則執行與回顧。
@@ -821,7 +912,7 @@ const ExpectedPersonality: Page = () => (
     section="05 / EXPECTED PERSONALITY"
     title="兩種入口，選定期待的人格"
     lead="交易者先建立目標，作為後續行為對照與引導的依據。"
-    note="概念示意；人格類型、測驗題目與呈現方式仍在設計。"
+    note={'\n'}
   >
     <div style={{ ...split, marginTop: 20 }}>
       <Point accent={c.copper} number="A / 自行選擇" title="閱讀特質說明">
@@ -858,7 +949,7 @@ const GapComparison: Page = () => (
     section="05 / FEATURE 01"
     title="兩種人格的行為差異"
     lead="以小美的短線交易為例，把人格差距拆成可觀察的行為。"
-    note="以下為虛構案例的行為對照，非人格診斷或實際評分；期望人格由使用者自行確認。"
+    note={'\n'}
   >
     <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 22, textAlign: 'left' }}>
       <thead>
@@ -877,18 +968,20 @@ const GapComparison: Page = () => (
       <tbody style={{ fontSize: 34, lineHeight: 1.55 }}>
         <tr style={{ borderTop: `1px solid ${c.line}` }}>
           <th style={{ padding: '30px 0', fontWeight: 650 }}>進場依據</th>
-          <td style={{ padding: '30px 36px 30px 0', color: c.muted }}>看到走勢加速，就想跟進</td>
+          <td style={{ padding: '30px 36px 30px 0', color: c.muted }}>看到走勢加速，動態跟進</td>
           <td style={{ padding: '30px 0' }}>等預設突破條件符合才進場</td>
         </tr>
         <tr style={{ borderTop: `1px solid ${c.line}` }}>
           <th style={{ padding: '30px 0', fontWeight: 650 }}>計畫變動</th>
-          <td style={{ padding: '30px 36px 30px 0', color: c.muted }}>隨短期波動，臨時改變計畫</td>
+          <td style={{ padding: '30px 36px 30px 0', color: c.muted }}>
+            隨短期波動，機動性改變計畫
+          </td>
           <td style={{ padding: '30px 0' }}>依預設退出條件或調整規則決定</td>
         </tr>
         <tr style={{ borderTop: `1px solid ${c.line}`, borderBottom: `1px solid ${c.line}` }}>
           <th style={{ padding: '30px 0', fontWeight: 650 }}>交易回顧</th>
           <td style={{ padding: '30px 36px 30px 0', color: c.muted }}>
-            先看結果，較少記錄決策理由
+            結果導向，較少記錄決策理由
           </td>
           <td style={{ padding: '30px 0' }}>回看是否遵守條件與變更理由</td>
         </tr>
@@ -906,7 +999,7 @@ const BehaviorGuidance: Page = () => (
     section="05 / FEATURE 02"
     title="Travis 如何引導小美靠近期望人格"
     lead="把「突破規則手」的期望，落在每次交易前、決策當下與交易後。"
-    note="流程與提示為產品概念示意；介入規則與效果仍待驗證，最終決定由使用者做出。"
+    note={'\n'}
   >
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 56, marginTop: 22 }}>
       <Point accent={c.copper} number="01 / 交易前" title="把期望寫成條件">
@@ -950,7 +1043,7 @@ const PersonalityProgress: Page = () => (
     section="05 / DESIGN PROGRESS"
     title="人格設計：架構原則與待收斂項目"
     lead="沿用既有人格設計基礎，持續收斂可供產品使用的定義。"
-    note="既有自評與行為觀測的資料原則，與本次新增說明的「期待人格」目標需分開理解。"
+    note={'\n'}
   >
     <div style={{ ...split, marginTop: 18 }}>
       <div>
@@ -1002,7 +1095,7 @@ const AcademicCooperation: Page = () => (
         用於機器學習或深度學習。
       </Point>
       <Point accent={c.copper} number="02 / 目前限制" title="資料取得有難度">
-        對方要求的資料，
+        需求的資料，
         <br />
         目前對團隊而言較難取得。
       </Point>
@@ -1165,7 +1258,7 @@ const NextMilestones: Page = () => (
     section="06 / NEXT MILESTONES"
     title="下一階段，依里程碑持續推進"
     lead="沿用團隊日常更新節奏，聚焦每項產品接下來的工作。"
-    note="此頁為下一階段工作方向，非固定日期的交付承諾。"
+    note={'\n'}
   >
     <div
       style={{
@@ -1196,46 +1289,57 @@ const NextMilestones: Page = () => (
   </Frame>
 );
 
-const Closing: Page = () => (
-  <Canvas dark>
-    <div style={{ padding: '96px 112px 0' }}>
-      <Label color={c.lightCopper}>2026 Q3 / DISCUSSION</Label>
+const Discussion: Page = () => (
+  <Canvas>
+    <div style={{ position: 'absolute', left: 112, top: 96 }}>
+      <Label>06 / DISCUSSION</Label>
+    </div>
+    <div style={{ position: 'absolute', left: 112, top: 248, width: 680 }}>
       <h2
         style={{
-          fontSize: 104,
           fontFamily: 'var(--osd-font-display)',
-          fontWeight: 600,
-          lineHeight: 1.25,
+          fontSize: 104,
+          fontWeight: 650,
+          lineHeight: 1.2,
           letterSpacing: '-0.04em',
-          margin: '78px 0 0',
+          margin: 0,
         }}
       >
-        既有產品持續推進
+        下一階段的
         <br />
-        Travis AI 聚焦開發前準備
+        討論重點
       </h2>
-      <div style={{ ...split, marginTop: 90 }}>
-        <div style={{ borderTop: `1px solid ${c.darkLine}`, paddingTop: 28 }}>
-          <Label color={c.darkMuted}>既有產品</Label>
-          <Body style={{ fontSize: 34, marginTop: 24 }}>
-            晨報事件體驗與資料收集
-            <br />
-            數據來源擴充、研報上雲與內容擴充
-            <br />
-            富邦 API 串接
-          </Body>
-        </div>
-        <div style={{ borderTop: `1px solid ${c.darkLine}`, paddingTop: 28 }}>
-          <Label color={c.lightCopper}>TRAVIS AI</Label>
-          <Body style={{ fontSize: 34, marginTop: 24 }}>
-            呈現人格差距、協助行為調整
-            <br />
-            推進設計、申請與學術合作洽談
-          </Body>
-        </div>
+      <Body style={{ color: c.muted, marginTop: 40 }}>
+        工作優先順序
+        <br />
+        與學術合作的資料可行性
+      </Body>
+    </div>
+    <div style={{ position: 'absolute', left: 900, top: 204, width: 908 }}>
+      <div style={{ borderTop: '3px solid var(--osd-accent)', paddingTop: 28 }}>
+        <Label>01 / 工作安排</Label>
+        <h3 style={{ fontSize: 48, fontWeight: 650, margin: '22px 0 24px' }}>
+          接下來，先推進哪些工作？
+        </h3>
+        <Body style={{ fontSize: 34 }}>
+          晨報資料收集、研報上雲與富邦串接，
+          <br />
+          各項工作如何安排推進順序？
+        </Body>
       </div>
-      <div style={{ marginTop: 64, color: c.lightCopper, fontSize: 30 }}>
-        討論：下一階段的優先順序與可協助的資料來源
+      <div style={{ borderTop: `3px solid ${c.copper}`, paddingTop: 28, marginTop: 68 }}>
+        <Label color={c.copper}>02 / 學術合作</Label>
+        <h3 style={{ fontSize: 48, fontWeight: 650, margin: '22px 0 24px' }}>
+          研究資料，可以從哪裡取得？
+        </h3>
+        <Body style={{ fontSize: 34 }}>
+          教授研究所需的資料，
+          <br />
+          有哪些可取得或可協助的來源？
+        </Body>
+        <Body style={{ fontSize: 28, color: c.muted, marginTop: 24 }}>
+          目前仍在協調資料需求與取得可行性。
+        </Body>
       </div>
     </div>
   </Canvas>
@@ -1250,7 +1354,8 @@ export const notes: (string | undefined)[] = [
   '建議 1:00。金融 DB 由數據 DB 與研報 DB 組成。數據 DB 處理行情、標的、日曆與宏觀等市場資料，支援圖表、報告與 AI 查詢。研報 DB 則整理 PDF、Word 等報告，讓內容可以被搜尋、追問並追溯原文。兩條路線的重點不同：數據 DB 擴充來源與事件內容，研報 DB 目前正在上雲，之後擴充更完整的國內外研報。',
   '建議 1:00。數據 DB 既有來源包含 Twelve Data、Shioaji 與 Finlab。接下來要導入 FactSet，擴充 Finlab 的資料範圍，也收集晨報規劃中的法說會、FED、IPO 等活動資料與影片，建立定期抓取機制。這些擴充支援研究及晨報的日曆與走勢事件入口，並非已完成導入的成果。',
   '建議 1:15。研報 DB 目前正在執行上雲任務，把既有研報資料庫部署到雲端，作為後續服務與內容擴充的基礎。之後的目標是擴充更完整的國內外研究報告。既有 FinDB 簡報已介紹抽取文字、語意標籤、檢索與帶引用問答，讓使用者能搜尋、追問並回到原始報告。這次的更新重點是上雲與後續內容擴充，不宣稱已完成上雲，也不先承諾特定研報來源或數量。',
-  '建議 1:00。交易機器人的方向維持一致，本次主要是進度推進，開始串接富邦 API。左邊是既有工作台，用來交代產品基礎。本次不額外展開介面或串接技術細節。',
+  '建議 1:00。交易機器人的方向維持一致，本次主要是進度推進，開始串接富邦 API。左邊是既有工作台，用來交代產品基礎，下一頁整理後續七項目標。',
+  '建議 2:00。後續目標分成兩組。行情與帳號整合包含三項：第一，讓每位使用者透過自己的富邦 session 取得行情並評估本人委託，補上登入生命週期、失效重連與停用或解綁時的 session 清理。第二，加密保存券商憑證，建立 per-user session pool，提供管理員綁定、解綁與本人帳號查詢 API，加入 session 容量限制、錯誤處理和安全防護。第三，透過富邦 SDK client 與行情 provider 支援登入、行情訂閱、重連、REST 現價及報價快取，統一報價時間與新鮮度判定，符合既有 provider 介面。本人帳務查詢目前聚焦 API 規格：交割款查詢本人近三個交易日資料，保留正負號與 0、null 差異，只呈現券商回傳，不推算或加總；持倉查詢本人部位與可賣數量，涵蓋交易類型、負數數量與空列，不包含損益及成本計算；今日委託定義券商狀態碼語意轉換及未知狀態處理，區分券商委託與系統 intent、使用者稽核對照資料；餘額查詢定義回傳欄位、金額型別轉換與錯誤處理，由共用行情 provider 管理登入 session，避免另開登入連線。這些是後續工作目標，不表示功能已完成。',
   '建議 0:45。接下來是本次的重點 Travis AI。它是人格驅動的交易助理，兩項主要特色分別是呈現人格差距，以及協助交易者調整行為。專案目前仍在人格設計階段。',
   '建議 1:30。輪盤圖由使用者提供，資產為 assets/trading-persona-wheel.png。先看兩組分類：短線與長線，以及靈活決策與系統化。四個象限各有四種人格。輪盤名稱與分組依提供圖片，旁邊的特質說明是概念解讀。接下來挑左上的追勢衝浪手與右上的突破規則手，兩者都做短線，差別集中在決策方式。輪盤是理解風格的入口，不代表人格高低或驗證完成的分類。',
   '建議 1:30。小美是虛構案例。實際交易人格由行為觀測推估，這裡示意為追勢衝浪手，看見走勢加速就想跟進。期望交易人格由小美自行選定，這裡是突破規則手，她希望保留對趨勢的敏感度，同時先確認條件再決定。名稱與象限沿用輪盤，個別行為描述是案例設定，並非所有該類型的人都如此。期望方向由小美決定，不表示系統化人格優於靈活人格。',
@@ -1261,8 +1366,8 @@ export const notes: (string | undefined)[] = [
   '建議 1:45。吳信龍教授是代表系所，從學術單位的角度與我們討論合作。教授期待取得一筆可用於機器學習或深度學習的資料，但對方要求的資料目前對團隊而言較難取得。因此合作仍在洽談，我們持續討論研究需求與可提供資料之間的可行方案，分工也尚未定案。',
   '建議 1:30。專利申請與 CITI 企劃書會以這兩項特色為主軸。差距呈現說明如何比對行為人格與期待人格，行為重新導向則說明如何協助交易者靠近目標。這裡呈現準備方向，不表示已送件或取得核准。CITI 指台北市產業發展獎勵補助計畫。',
   '建議 1:30。開發前有三項條件。人格設計要完成，專利以送件為完成，CITI 則需要送件、召開評審會議並通過。三項條件都完成後才進入產品開發，因此目前用里程碑表達，而不先承諾一個固定開發日期。',
-  '建議 1:15。下一階段，晨報從收集與抓取開始。金融 DB 分兩條線推進：數據 DB 擴充 FactSet、Finlab 與活動內容；研報 DB 完成上雲後，擴充國內外研報。交易機器人推進富邦串接。Travis 則聚焦人格設計與兩項申請準備，並持續協調學術合作資料方案。延續團隊平時的更新節奏，依里程碑檢視進展。',
-  '建議 1:00。第三季回顧的重點，是既有產品持續推進，同時把 Travis 的產品核心與開發前準備整理清楚。金融 DB 同時推進數據來源擴充，以及研報上雲與國內外內容擴充。Travis 的核心是看見差距、協助調整。接下來可以討論各項工作的優先順序，以及是否有可協助學術研究的資料來源。',
+  '建議 1:00。收尾前留兩個討論重點。第一，晨報資料收集、研報上雲與富邦串接，接下來如何安排推進順序。第二，與教授的學術合作仍在協調研究資料，是否有可取得或可協助的來源。這裡提出討論，不預設優先順序或資料來源已定案。討論後，最後一頁回到各產品的下一個里程碑。',
+  '建議 1:15。最後用這張總覽收束。晨報從收集與抓取開始；數據 DB 擴充 FactSet、Finlab 與活動內容；研報 DB 完成上雲後，擴充國內外研報；交易機器人推進富邦串接。Travis 則完成設計與申請條件後進入開發，持續協調學術合作的資料方案。延續團隊平時的更新節奏，依里程碑檢視進展。結束時保留這張總覽，讓大家能對照各產品的下一步。',
 ];
 
 export const meta: SlideMeta = {
@@ -1280,6 +1385,7 @@ export default [
   DatabaseExpansion,
   ResearchDatabaseExpansion,
   TradingProgress,
+  TradingNextGoals,
   TravisIntro,
   PersonalityWheel,
   TraderNeed,
@@ -1290,6 +1396,6 @@ export default [
   AcademicCooperation,
   PatentAndCiti,
   DevelopmentGates,
+  Discussion,
   NextMilestones,
-  Closing,
 ] satisfies Page[];
