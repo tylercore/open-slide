@@ -1,9 +1,11 @@
 import type { DesignSystem, Page, SlideMeta, SlideTransition } from '@open-slide/core';
 import { useSlidePageNumber } from '@open-slide/core';
 import type { CSSProperties, ReactNode } from 'react';
-import morningReport from './assets/morning-report.png';
+import morningReportPoster from './assets/morning-report-video-poster.jpg';
 import tradingPersonaWheel from './assets/trading-persona-wheel.png';
 import tradingWorkbench from './assets/trading-workbench.png';
+
+const morningReportVideo = new URL('./assets/customer-demo-zh-hant-75s.mp4', import.meta.url).href;
 
 export const design: DesignSystem = {
   palette: { bg: '#F7F8FA', text: '#17232D', accent: '#3158D5' },
@@ -289,7 +291,7 @@ const Portfolio: Page = () => (
       Rework 規劃中，新增事件研究體驗
     </Row>
     <Row code="02" title="金融 DB">
-      擴充資料來源與活動影音
+      數據 DB 擴充；研報 DB 上雲與內容擴充
     </Row>
     <Row code="03" title="AI 股票交易機器人">
       延續原方向，開始串接富邦 API
@@ -323,17 +325,25 @@ const MorningFoundation: Page = () => (
     section="02 / AI MORNING REPORT"
     title="AI 晨報的既有基礎"
     lead="閱讀、收聽與問答能力持續保留，作為下一階段的產品基礎。"
-    note="畫面取自既有 AI 晨報產品。"
+    note="AI 晨報操作示範 / 75 秒 / 含繁體中文字幕與音訊，可手動播放。"
   >
     <div
       style={{ display: 'grid', gridTemplateColumns: '1040px 1fr', gap: 100, alignItems: 'start' }}
     >
-      <img
-        src={morningReport}
-        alt="既有 AI 晨報的 PDF 閱讀與 AI 問答畫面"
+      {/* biome-ignore lint/a11y/useMediaCaption: The supplied video includes burned-in Traditional Chinese captions. */}
+      <video
+        src={morningReportVideo}
+        poster={morningReportPoster}
+        aria-label="AI 晨報操作示範，75 秒，含繁體中文字幕與音訊"
+        controls
+        playsInline
+        preload="metadata"
+        onClick={(event) => event.stopPropagation()}
+        onPointerDown={(event) => event.stopPropagation()}
+        onKeyDown={(event) => event.stopPropagation()}
         style={{
-          width: 940,
-          height: 588,
+          width: 1040,
+          height: 585,
           objectFit: 'contain',
           objectPosition: 'top left',
           border: `1px solid ${c.line}`,
@@ -498,62 +508,49 @@ const MorningImplementation: Page = () => (
 const DatabaseFoundation: Page = () => (
   <Frame
     section="03 / FINANCIAL DATABASE"
-    title="金融 DB：持續累積資料基礎"
-    lead="既有來源支援資料查詢、研究與產品應用。"
+    title="金融 DB：數據與研報，兩條擴充路線"
+    lead="數據 DB 整理市場資料；研報 DB 累積可搜尋、可追問的研究內容。"
   >
-    <div style={{ ...split, gridTemplateColumns: '1.1fr 0.9fr', marginTop: 40 }}>
-      <div>
-        <Label>既有來源</Label>
-        <div
-          style={{
-            fontSize: 68,
-            lineHeight: 1.4,
-            fontWeight: 600,
-            letterSpacing: '-0.025em',
-            marginTop: 24,
-          }}
-        >
-          Twelve Data
-        </div>
-        <div
-          style={{
-            fontSize: 68,
-            lineHeight: 1.4,
-            fontWeight: 600,
-            letterSpacing: '-0.025em',
-            borderTop: `1px solid ${c.line}`,
-            paddingTop: 20,
-            marginTop: 20,
-          }}
-        >
-          Shioaji
-        </div>
-        <div
-          style={{
-            fontSize: 68,
-            lineHeight: 1.4,
-            fontWeight: 600,
-            letterSpacing: '-0.025em',
-            borderTop: `1px solid ${c.line}`,
-            paddingTop: 20,
-            marginTop: 20,
-          }}
-        >
-          Finlab
+    <div style={{ ...split, marginTop: 32 }}>
+      <div style={{ borderTop: '3px solid var(--osd-accent)', paddingTop: 30 }}>
+        <Label>01 / DATA DB</Label>
+        <h3 style={{ fontSize: 56, fontWeight: 650, margin: '24px 0' }}>數據 DB</h3>
+        <Body>
+          整合行情、標的、日曆與宏觀資料，
+          <br />
+          提供一致的查詢與應用基礎。
+        </Body>
+        <Body style={{ color: c.muted, fontSize: 30, marginTop: 24 }}>
+          支援圖表、報告、研究與 AI 查詢。
+        </Body>
+        <div style={{ borderTop: `1px solid ${c.line}`, paddingTop: 26, marginTop: 36 }}>
+          <Label>擴充方向</Label>
+          <Body style={{ marginTop: 16 }}>
+            FactSet、Finlab 擴充
+            <br />
+            與活動資料、影片收集
+          </Body>
         </div>
       </div>
-      <div style={{ borderLeft: '3px solid var(--osd-accent)', paddingLeft: 56, paddingTop: 18 }}>
-        <Label>共用資料基礎</Label>
-        <div style={{ fontSize: 56, lineHeight: 1.35, fontWeight: 650, marginTop: 40 }}>
-          支援研究
+      <div style={{ borderTop: `3px solid ${c.copper}`, paddingTop: 30 }}>
+        <Label color={c.copper}>02 / RESEARCH DB</Label>
+        <h3 style={{ fontSize: 56, fontWeight: 650, margin: '24px 0' }}>研報 DB</h3>
+        <Body>
+          整理 PDF、Word 等研究報告，
           <br />
-          也支援產品
-        </div>
-        <Body style={{ color: c.muted, marginTop: 40 }}>
-          持續導入更多來源，
-          <br />
-          擴充可使用的資料範圍。
+          建立可檢索與問答的研究語料。
         </Body>
+        <Body style={{ color: c.muted, fontSize: 30, marginTop: 24 }}>
+          支援語意搜尋、帶引用問答與原文追溯。
+        </Body>
+        <div style={{ borderTop: `1px solid ${c.line}`, paddingTop: 26, marginTop: 36 }}>
+          <Label color={c.copper}>目前任務與後續方向</Label>
+          <Body style={{ marginTop: 16 }}>
+            執行上雲任務
+            <br />
+            後續擴充更完整的國內外研報
+          </Body>
+        </div>
       </div>
     </div>
   </Frame>
@@ -561,18 +558,18 @@ const DatabaseFoundation: Page = () => (
 
 const DatabaseExpansion: Page = () => (
   <Frame
-    section="03 / SOURCE EXPANSION"
-    title="下一波擴充，納入活動影音"
-    lead="增加資料來源，也為 AI 晨報的事件研究準備內容。"
+    section="03 / DATA DB EXPANSION"
+    title="數據 DB：擴充來源與事件內容"
+    lead="既有來源為 Twelve Data、Shioaji、Finlab，接下來擴充資料範圍。"
   >
     <Row code="01" title="FactSet">
-      導入新的金融資料來源
+      導入新的金融資料來源，擴充研究可用的市場資訊
     </Row>
     <Row code="02" title="Finlab 擴充">
-      擴充既有來源的資料範圍
+      延伸既有來源的資料範圍，支援後續研究與產品需求
     </Row>
-    <Row code="03" title="活動影片">
-      納入晨報規劃中的法說會、FED、IPO 等活動內容
+    <Row code="03" title="活動資料與影片">
+      收集法說會、FED、IPO 等活動內容，建立定期抓取機制
     </Row>
     <div
       style={{
@@ -585,12 +582,51 @@ const DatabaseExpansion: Page = () => (
       }}
     >
       <div>
-        <Label>金融 DB</Label>
+        <Label>數據 DB</Label>
         <Body style={{ marginTop: 12 }}>收集與累積事件資料</Body>
       </div>
       <div>
         <Label>AI 晨報</Label>
         <Body style={{ marginTop: 12 }}>日曆與走勢上的研究入口</Body>
+      </div>
+    </div>
+  </Frame>
+);
+
+const ResearchDatabaseExpansion: Page = () => (
+  <Frame
+    section="03 / RESEARCH DB EXPANSION"
+    title="研報 DB：先上雲，再擴充研究內容"
+    lead="既有研報能力支援搜尋、問答與原文追溯，目前正在執行上雲任務。"
+    note="上雲為進行中任務；國內外研報擴充為後續目標，來源與涵蓋範圍將逐步推進。"
+  >
+    <div style={{ ...split, marginTop: 20 }}>
+      <Point number="01 / 目前進行中" title="研報 DB 上雲">
+        推進既有研報資料庫的雲端部署，
+        <br />
+        作為後續服務與內容擴充的基礎。
+      </Point>
+      <Point number="02 / 後續目標" title="更完整的國內外研報" accent={c.copper}>
+        擴充國內與海外研究報告來源，
+        <br />
+        逐步增加研究內容的完整性。
+      </Point>
+    </div>
+    <div style={{ marginTop: 58, paddingTop: 28, borderTop: `1px solid ${c.line}` }}>
+      <Label>既有研報處理與使用方式</Label>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 48, marginTop: 24 }}>
+        <div>
+          <h3 style={{ fontSize: 34, margin: '0 0 14px' }}>報告整理</h3>
+          <Body style={{ fontSize: 30, color: c.muted }}>抽取文字、語意標籤</Body>
+        </div>
+        <div>
+          <h3 style={{ fontSize: 34, margin: '0 0 14px' }}>研究查詢</h3>
+          <Body style={{ fontSize: 30, color: c.muted }}>搜尋相關報告、延伸問答</Body>
+        </div>
+        <div>
+          <h3 style={{ fontSize: 34, margin: '0 0 14px' }}>來源追溯</h3>
+          <Body style={{ fontSize: 30, color: c.muted }}>透過引用回看原始報告</Body>
+        </div>
       </div>
     </div>
   </Frame>
@@ -744,9 +780,9 @@ const TraderNeed: Page = () => (
   <Frame
     travis
     section="05 / THE TRADER"
-    title="小林的實際與期望交易人格"
-    lead="同樣做短線交易，小林希望保留對趨勢的敏感度，同時建立明確規則。"
-    note="小林為虛構案例；人格名稱與象限取自輪盤，行為描述與目標選擇為示意，無優劣排序。"
+    title="小美的實際與期望交易人格"
+    lead="同樣做短線交易，小美希望保留對趨勢的敏感度，同時建立明確規則。"
+    note="小美為虛構案例；人格名稱與象限取自輪盤，行為描述與目標選擇為示意，無優劣排序。"
   >
     <div style={{ ...split, marginTop: 46 }}>
       <div style={{ borderTop: '3px solid var(--osd-accent)', paddingTop: 32 }}>
@@ -763,7 +799,7 @@ const TraderNeed: Page = () => (
         </Body>
       </div>
       <div style={{ borderTop: `3px solid ${c.copper}`, paddingTop: 32 }}>
-        <Label color={c.copper}>期望交易人格 / 小林自行選定</Label>
+        <Label color={c.copper}>期望交易人格 / 小美自行選定</Label>
         <h3 style={{ fontSize: 62, fontWeight: 650, margin: '30px 0 16px' }}>突破規則手</h3>
         <Body style={{ fontSize: 30, color: '#705091' }}>輪盤右上 / 短線・系統化</Body>
         <div style={{ fontSize: 57, fontWeight: 650, lineHeight: 1.45, marginTop: 40 }}>
@@ -810,7 +846,7 @@ const ExpectedPersonality: Page = () => (
         alignItems: 'center',
       }}
     >
-      <Label color={c.copper}>小林的期待人格 / 示意</Label>
+      <Label color={c.copper}>小美的期待人格 / 示意</Label>
       <div style={{ fontSize: 45, fontWeight: 650 }}>突破規則手：先訂條件，再做決定</div>
     </div>
   </Frame>
@@ -821,7 +857,7 @@ const GapComparison: Page = () => (
     travis
     section="05 / FEATURE 01"
     title="兩種人格的行為差異"
-    lead="以小林的短線交易為例，把人格差距拆成可觀察的行為。"
+    lead="以小美的短線交易為例，把人格差距拆成可觀察的行為。"
     note="以下為虛構案例的行為對照，非人格診斷或實際評分；期望人格由使用者自行確認。"
   >
     <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 22, textAlign: 'left' }}>
@@ -868,13 +904,13 @@ const BehaviorGuidance: Page = () => (
   <Frame
     travis
     section="05 / FEATURE 02"
-    title="Travis 如何引導小林靠近期望人格"
+    title="Travis 如何引導小美靠近期望人格"
     lead="把「突破規則手」的期望，落在每次交易前、決策當下與交易後。"
     note="流程與提示為產品概念示意；介入規則與效果仍待驗證，最終決定由使用者做出。"
   >
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 56, marginTop: 22 }}>
       <Point accent={c.copper} number="01 / 交易前" title="把期望寫成條件">
-        協助小林記下進場條件
+        協助小美記下進場條件
         <br />
         與退出規則，建立對照依據。
       </Point>
@@ -1114,7 +1150,7 @@ const Milestone = ({
       gridTemplateColumns: '420px 490px 1fr',
       gap: 40,
       borderTop: `1px solid ${c.line}`,
-      minHeight: 122,
+      minHeight: 102,
       alignItems: 'center',
     }}
   >
@@ -1144,7 +1180,12 @@ const NextMilestones: Page = () => (
       <Label>下一個里程碑</Label>
     </div>
     <Milestone name="AI 晨報" current="Rework 規劃" next="資料、影片收集與定期抓取" />
-    <Milestone name="金融 DB" current="既有來源持續支援" next="FactSet、Finlab 與活動影片擴充" />
+    <Milestone
+      name="金融 DB / 數據"
+      current="既有來源持續支援"
+      next="FactSet、Finlab 與活動影片擴充"
+    />
+    <Milestone name="金融 DB / 研報" current="上雲任務執行中" next="完成上雲，再擴充國內外研報" />
     <Milestone name="AI 股票交易機器人" current="開始串接富邦 API" next="持續推進串接工作" />
     <Milestone
       name="Travis AI"
@@ -1179,7 +1220,9 @@ const Closing: Page = () => (
           <Body style={{ fontSize: 34, marginTop: 24 }}>
             晨報事件體驗與資料收集
             <br />
-            金融 DB 擴充、富邦 API 串接
+            數據來源擴充、研報上雲與內容擴充
+            <br />
+            富邦 API 串接
           </Body>
         </div>
         <div style={{ borderTop: `1px solid ${c.darkLine}`, paddingTop: 28 }}>
@@ -1200,25 +1243,26 @@ const Closing: Page = () => (
 
 export const notes: (string | undefined)[] = [
   '建議 0:45。今天回顧第三季團隊的產品進展，也說明接下來的規劃。既有產品會快速同步，後半段聚焦 Travis AI。它目前仍在人格設計階段，接下來會說明產品特色與開發前需要完成的準備。',
-  '建議 1:30。四項產品各自位於不同階段。晨報正在規劃新的事件研究體驗；金融 DB 持續擴充來源；交易機器人的方向延續，開始串接富邦 API；Travis 則專注人格設計、專利與 CITI 準備。團隊平常已持續更新進度，這裡聚焦方向與下一步。',
-  '建議 1:00。晨報已經具備閱讀、收聽、問答的基礎。畫面展示既有的閱讀與 AI 問答。這些功能會保留，接下來的 rework 會在這個基礎上加入事件研究的使用方式。',
+  '建議 1:30。四項產品各自位於不同階段。晨報正在規劃新的事件研究體驗；金融 DB 分成數據 DB 與研報 DB，前者擴充資料來源，後者正在上雲，之後將擴充國內外研報；交易機器人的方向延續，開始串接富邦 API；Travis 則專注人格設計、專利與 CITI 準備。團隊平常已持續更新進度，這裡聚焦方向與下一步。',
+  '建議 1:45，包含 75 秒影片。先播放 AI 晨報操作示範，影片自帶繁體中文字幕與音訊。晨報已經具備閱讀、收聽與問答的基礎，這些功能會保留。影片播放完後，接著介紹 rework 規劃中的事件研究體驗。',
   '建議 1:45。這是一張規劃示意。以 A 公司的法說會為例，使用者可以先在日曆知道活動即將發生，之後也可以在股價走勢上找到活動時間，回看資訊與影片。FED、IPO 等事件也能用類似方式呈現。事件與價格的時間對照提供研究脈絡，這裡沒有把價格變動直接歸因於單一活動。',
   '建議 1:00。Rework 已有初步發想，接下來會進到實作。第一步是資料與影片收集，以及定期抓取機制。先讓內容能持續累積，再支援日曆與走勢介面。既有的閱讀、收聽與問答功能仍保留。',
-  '建議 0:45。金融 DB 已有 Twelve Data、Shioaji 與 Finlab 等來源。本次不逐項展開資料細節，重點是這個資料基礎會持續支援研究與產品應用。',
-  '建議 1:00。下一波要導入 FactSet、擴充 Finlab，也納入晨報規劃中的活動影片。活動資料的收集與累積，可以支援晨報的事件入口。這是目前的擴充方向，不表示這些新來源已完成導入。',
+  '建議 1:00。金融 DB 由數據 DB 與研報 DB 組成。數據 DB 處理行情、標的、日曆與宏觀等市場資料，支援圖表、報告與 AI 查詢。研報 DB 則整理 PDF、Word 等報告，讓內容可以被搜尋、追問並追溯原文。兩條路線的重點不同：數據 DB 擴充來源與事件內容，研報 DB 目前正在上雲，之後擴充更完整的國內外研報。',
+  '建議 1:00。數據 DB 既有來源包含 Twelve Data、Shioaji 與 Finlab。接下來要導入 FactSet，擴充 Finlab 的資料範圍，也收集晨報規劃中的法說會、FED、IPO 等活動資料與影片，建立定期抓取機制。這些擴充支援研究及晨報的日曆與走勢事件入口，並非已完成導入的成果。',
+  '建議 1:15。研報 DB 目前正在執行上雲任務，把既有研報資料庫部署到雲端，作為後續服務與內容擴充的基礎。之後的目標是擴充更完整的國內外研究報告。既有 FinDB 簡報已介紹抽取文字、語意標籤、檢索與帶引用問答，讓使用者能搜尋、追問並回到原始報告。這次的更新重點是上雲與後續內容擴充，不宣稱已完成上雲，也不先承諾特定研報來源或數量。',
   '建議 1:00。交易機器人的方向維持一致，本次主要是進度推進，開始串接富邦 API。左邊是既有工作台，用來交代產品基礎。本次不額外展開介面或串接技術細節。',
   '建議 0:45。接下來是本次的重點 Travis AI。它是人格驅動的交易助理，兩項主要特色分別是呈現人格差距，以及協助交易者調整行為。專案目前仍在人格設計階段。',
   '建議 1:30。輪盤圖由使用者提供，資產為 assets/trading-persona-wheel.png。先看兩組分類：短線與長線，以及靈活決策與系統化。四個象限各有四種人格。輪盤名稱與分組依提供圖片，旁邊的特質說明是概念解讀。接下來挑左上的追勢衝浪手與右上的突破規則手，兩者都做短線，差別集中在決策方式。輪盤是理解風格的入口，不代表人格高低或驗證完成的分類。',
-  '建議 1:30。小林是虛構案例。實際交易人格由行為觀測推估，這裡示意為追勢衝浪手，看見走勢加速就想跟進。期望交易人格由小林自行選定，這裡是突破規則手，他希望保留對趨勢的敏感度，同時先確認條件再決定。名稱與象限沿用輪盤，個別行為描述是案例設定，並非所有該類型的人都如此。期望方向由小林決定，不表示系統化人格優於靈活人格。',
-  '建議 1:30。期待人格有兩種選定方式。一種是看過特質說明後自行選擇，另一種是透過簡短人格測驗協助選定。延續小林的例子，他選擇突破規則手，希望先訂條件再做交易決定。測驗只協助探索，最後由他確認期望目標。期待人格是他想靠近的目標，與他目前如何評價自己需要分開理解。',
-  '建議 2:00。第一個特色是差距呈現。從進場依據、計畫變動與交易回顧對照兩種人格。小林現在容易看到行情就想進場，遇到波動就改計畫，回顧時先看結果。他期望先確認突破條件，依退出或調整規則決定，事後檢查條件遵守情況與理由。這些是虛構案例的可觀察行為，沒有實際評分或人格診斷。引導重點是保留對趨勢的敏感度，逐步增加條件確認與決策紀錄。',
-  '建議 2:00。第二個特色是行為重新導向。交易前，把小林的期望人格轉成他自己確認的進場條件與退出規則。決策當下，如果他想追價或臨時改計畫，Travis 提醒核對條件，若要變更則記下理由。交易後，對照原定條件與實際操作，回看偏離原因，觀察規則遵守情況與決策理由紀錄，作為下次調整的依據。這是產品概念，觸發方式與改善成效尚待驗證；不提供具體交易參數，也不把盈虧當成人格改善的證明。最終仍由小林決定。',
+  '建議 1:30。小美是虛構案例。實際交易人格由行為觀測推估，這裡示意為追勢衝浪手，看見走勢加速就想跟進。期望交易人格由小美自行選定，這裡是突破規則手，她希望保留對趨勢的敏感度，同時先確認條件再決定。名稱與象限沿用輪盤，個別行為描述是案例設定，並非所有該類型的人都如此。期望方向由小美決定，不表示系統化人格優於靈活人格。',
+  '建議 1:30。期待人格有兩種選定方式。一種是看過特質說明後自行選擇，另一種是透過簡短人格測驗協助選定。延續小美的例子，她選擇突破規則手，希望先訂條件再做交易決定。測驗只協助探索，最後由她確認期望目標。期待人格是她想靠近的目標，與她目前如何評價自己需要分開理解。',
+  '建議 2:00。第一個特色是差距呈現。從進場依據、計畫變動與交易回顧對照兩種人格。小美現在容易看到行情就想進場，遇到波動就改計畫，回顧時先看結果。她期望先確認突破條件，依退出或調整規則決定，事後檢查條件遵守情況與理由。這些是虛構案例的可觀察行為，沒有實際評分或人格診斷。引導重點是保留對趨勢的敏感度，逐步增加條件確認與決策紀錄。',
+  '建議 2:00。第二個特色是行為重新導向。交易前，把小美的期望人格轉成她自己確認的進場條件與退出規則。決策當下，如果她想追價或臨時改計畫，Travis 提醒核對條件，若要變更則記下理由。交易後，對照原定條件與實際操作，回看偏離原因，觀察規則遵守情況與決策理由紀錄，作為下次調整的依據。這是產品概念，觸發方式與改善成效尚待驗證；不提供具體交易參數，也不把盈虧當成人格改善的證明。最終仍由小美決定。',
   '建議 1:45。現有人格設計已確認幾項資料原則，包括分開保存自評與行為觀測，分離人格傾向與判斷信心，以及在資料不足時保留未知。四大面向、因子、題目與更新規則仍在收斂。這些既有自評資料與本次說明的期待人格目標需分開，後續再銜接到差距呈現與引導方式。',
   '建議 1:45。吳信龍教授是代表系所，從學術單位的角度與我們討論合作。教授期待取得一筆可用於機器學習或深度學習的資料，但對方要求的資料目前對團隊而言較難取得。因此合作仍在洽談，我們持續討論研究需求與可提供資料之間的可行方案，分工也尚未定案。',
   '建議 1:30。專利申請與 CITI 企劃書會以這兩項特色為主軸。差距呈現說明如何比對行為人格與期待人格，行為重新導向則說明如何協助交易者靠近目標。這裡呈現準備方向，不表示已送件或取得核准。CITI 指台北市產業發展獎勵補助計畫。',
   '建議 1:30。開發前有三項條件。人格設計要完成，專利以送件為完成，CITI 則需要送件、召開評審會議並通過。三項條件都完成後才進入產品開發，因此目前用里程碑表達，而不先承諾一個固定開發日期。',
-  '建議 1:15。下一階段，晨報從收集與抓取開始，金融 DB 持續導入來源，交易機器人推進富邦串接。Travis 則聚焦人格設計與兩項申請準備，並持續協調學術合作資料方案。延續團隊平時的更新節奏，依里程碑檢視進展。',
-  '建議 1:00。第三季回顧的重點，是既有產品持續推進，同時把 Travis 的產品核心與開發前準備整理清楚。Travis 的核心是看見差距、協助調整。接下來可以討論各項工作的優先順序，以及是否有可協助學術研究的資料來源。',
+  '建議 1:15。下一階段，晨報從收集與抓取開始。金融 DB 分兩條線推進：數據 DB 擴充 FactSet、Finlab 與活動內容；研報 DB 完成上雲後，擴充國內外研報。交易機器人推進富邦串接。Travis 則聚焦人格設計與兩項申請準備，並持續協調學術合作資料方案。延續團隊平時的更新節奏，依里程碑檢視進展。',
+  '建議 1:00。第三季回顧的重點，是既有產品持續推進，同時把 Travis 的產品核心與開發前準備整理清楚。金融 DB 同時推進數據來源擴充，以及研報上雲與國內外內容擴充。Travis 的核心是看見差距、協助調整。接下來可以討論各項工作的優先順序，以及是否有可協助學術研究的資料來源。',
 ];
 
 export const meta: SlideMeta = {
@@ -1234,6 +1278,7 @@ export default [
   MorningImplementation,
   DatabaseFoundation,
   DatabaseExpansion,
+  ResearchDatabaseExpansion,
   TradingProgress,
   TravisIntro,
   PersonalityWheel,
